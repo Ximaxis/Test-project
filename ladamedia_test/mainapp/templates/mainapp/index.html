@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+
+{% block content %}
+    <div class="container ftco-cart">
+     <div class="col-md-12 ftco-animate">
+     <div class="h3 text-center text-secondary">Таблица 1</div>
+      <table class="table">
+						<thead class="thead-primary">
+							<tr class="text-center">
+
+								<th>Идентификатор таблицы заказа</th>
+								<th>Регистрационный номер заказа</th>
+								<th>Дата формирования заказа</th>
+
+							</tr>
+						</thead>
+						<tbody>
+							{% for item in headers %}
+							<tr class="bg-light text-center"> 
+							<td>{{ item.pk }} </td>
+							<td>{{ item.reg_number }} </td>
+							<td>{{ item.on_date }} </td>
+							</tr>
+							{% endfor %}
+
+
+
+						</tbody>
+					</table>
+      <div class="h3 text-center text-secondary">Таблица 2</div>
+       <table class="table">
+						<thead class="thead-primary">
+							<tr class="text-center">
+
+								<th>Идентификатор строки деталей заказа</th>
+								<th>Идентификатор заказа</th>
+								<th>Идентификатор товара</th>
+								<th>Количество товара</th>
+								<th>Цена за единицу измерения товара для данного заказа</th>
+
+							</tr>
+						</thead>
+						<tbody>
+							{% for item2 in details %}
+							<tr class="bg-light text-center"> 
+							<td>{{ item2.pk }} </td>
+							<td>{{ item2.hdr }} </td>
+							<td>{{ item2.good_id }} </td>
+							<td>{{ item2.amount }} шт</td>
+							<td>{{ item2.price }} руб</td>
+							</tr>
+							{% endfor %}
+
+
+
+						</tbody>
+					</table>
+      </div> 
+      
+    </div>
+{% endblock %}

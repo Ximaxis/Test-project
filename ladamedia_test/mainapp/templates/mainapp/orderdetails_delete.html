@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+
+{% block content %}
+<section class="ftco-section ftco-cart">
+	<div class="container">
+   <div class="row no-gutters slider-text justify-content-center">
+   
+    <h3 class="col-md-12 text-center">Уверены, что хотите удалить элемент заказа {{ product_to_delete.pk }}?</h3>
+    <form action="{% url 'order_details_delete' product_to_delete.pk %}" method="post">
+        {% csrf_token %}
+        <input class="btn btn-danger py-3 px-5" type="submit" value="удалить">
+    </form>
+    
+       <p> <a href="{% url 'order_details' product_to_delete.hdr.pk %}" class="btn btn btn-success py-3 px-5">отмена</a></p>
+    </div>
+</div>
+</section>
+{% endblock %}

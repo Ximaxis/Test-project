@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+<section class="ftco-section ftco-cart">
+<div class="text-center text-secondary"><h3>Таблиза деталей заказов</h3></div>
+	<div class="container">
+		<button>
+			<a href={% url 'order_details_create' headers.pk %}>
+				<h5>+ New detail</h5>
+			</a>
+		</button>
+		<div class="row">
+
+			<div class="col-md-12 ftco-animate">
+					<table class="table">
+						<thead class="thead-primary">
+							<tr class="text-center">
+								<th>Del/Edit</th>
+								<th>Идентификатор заказа</th>
+								<th>Идентификатор товара</th>
+								<th>Количество товара</th>
+								<th>Цена за единицу измерения товара для данного заказа </th>
+								<th>Общая сумма</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for object in objects %}
+							<tr class="text-center  {% if not object.is_active %}not_active{% endif %}">
+								<td class="product-remove">
+								<a href="{% url 'order_details_delete' object.pk %}">Delete</a> /
+						
+								<a href="{% url 'order_details_update' object.pk %}">Edit</a></td>
+
+								<td>
+									{{ object.hdr }}
+									
+				
+								</td>
+
+								<td>
+									{{ object.good_id }}
+								</td>
+
+								<td >{{object.amount}} шт</td>
+								<td>
+									{{ object.price }}
+									руб
+									
+								</td>
+								<td>
+									{{ object.product_cost|floatformat:2 }}
+									руб
+									
+								</td>
+							</tr>
+							{% endfor %}
+
+
+
+						</tbody>
+					</table>
+				
+
+			</div>
+		</div>
+
+	</div>
+</section>
+{% endblock %}

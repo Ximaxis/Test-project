@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+
+{% block content %}
+    <div class="container ftco-cart">
+     <div class="h3 text-center text-secondary">Таблица выборки</div>
+       <table class="table">
+						<thead class="thead-primary">
+							<tr class="text-center">
+
+								<th>Идентификатор строки деталей заказа</th>
+								<th>Идентификатор заказа</th>
+								<th>Идентификатор товара</th>
+								<th>Количество товара</th>
+								<th>Цена за единицу измерения товара для данного заказа</th>
+								<th>Общая сумма</th>
+
+							</tr>
+						</thead>
+						<tbody>
+							{% for item in items %}
+							<tr class="bg-light text-center"> 
+							<td>{{ item.pk }} </td>
+							<td>{{ item.hdr }} </td>
+							<td>{{ item.good_id }} </td>
+							<td>{{ item.amount }} шт</td>
+							<td>{{ item.price }} руб</td>
+							<td>{{ item.product_cost|floatformat:2 }} руб</td>
+							</tr>
+							{% endfor %}
+
+
+
+						</tbody>
+					</table>
+        
+    </div>
+{% endblock %}
